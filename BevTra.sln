@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BevTra", "BevTra.csproj", "{81F7FE94-86E7-4304-9002-730B1E7EC7AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BevTra", "BevTra\BevTra.csproj", "{81F7FE94-86E7-4304-9002-730B1E7EC7AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BevTra.Core", "BevTra.Core\BevTra.Core.csproj", "{3942E12F-F540-45FB-899F-A8023BA6A6D9}"
 EndProject

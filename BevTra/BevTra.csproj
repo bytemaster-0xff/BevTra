@@ -177,7 +177,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="BevTra.Core\BevTra.Core.csproj">
+    <ProjectReference Include="..\BevTra.Core\BevTra.Core.csproj">
       <Project>{3942e12f-f540-45fb-899f-a8023ba6a6d9}</Project>
       <Name>BevTra.Core</Name>
     </ProjectReference>
