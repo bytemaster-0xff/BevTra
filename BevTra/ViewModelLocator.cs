@@ -41,11 +41,11 @@ namespace BevTra
 
             SimpleIoc.Default.GetInstance<IDataContext>().Init();
 
-            SimpleIoc.Default.Register<AboutView>();
+            SimpleIoc.Default.Register<AboutViewModel>();
             SimpleIoc.Default.Register<AddNewViewModel>();
             SimpleIoc.Default.Register<HistoryView>();
-            SimpleIoc.Default.Register<HomeView>();
-            SimpleIoc.Default.Register<SettingsView>();
+            SimpleIoc.Default.Register<HomeViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<StartupViewModel>();
         }
 

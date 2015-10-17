@@ -2,6 +2,10 @@
 using Foundation;
 using UIKit;
 using Facebook.CoreKit;
+using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
+using BevTra.Core;
 
 namespace BevTra.iOS
 {
@@ -23,6 +27,21 @@ namespace BevTra.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            var nav = new NavigationService();
+            nav.Initialize((UINavigationController)Window.RootViewController);
+
+            nav.Configure(Views.About, "AboutView");
+            nav.Configure(Views.AddNew, "AddNewView");
+            nav.Configure(Views.History, "AboutView");
+            nav.Configure(Views.Home, "HomeView");
+            nav.Configure(Views.Settings, "SettingsView");
+            nav.Configure(Views.Startup, "StartupView");
+            nav.Configure(Views.UpdateExisting, "UpdateExistingView");
+
+            SimpleIoc.Default.Register<INavigationService>(() => nav);
+
             // Override point for customization after application launch.
             if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
             {
