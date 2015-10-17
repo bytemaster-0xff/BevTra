@@ -3,6 +3,9 @@ using System.Drawing;
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
+using BevTra.Core;
+using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json.Linq;
 
 namespace BevTra.iOS
 {
@@ -37,6 +40,15 @@ namespace BevTra.iOS
                 TableView.InsertRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
         }
 
+        async void Login(Object sndr, EventArgs args)
+        {
+            var token = new JObject();
+            token.Add("access_token", "5ce8a4ae9b8deba8f67ea3604551c723");
+            var client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(Constants.AccountUrl, Constants.AccountKey);
+            await client.LoginAsync(MobileServiceAuthenticationProvider.Facebook, token);
+
+        }
+
         public override void DidReceiveMemoryWarning()
         {
             // Releases the view if it doesn't have a superview.
@@ -54,6 +66,10 @@ namespace BevTra.iOS
 
             var addButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, AddNewItem);
             NavigationItem.RightBarButtonItem = addButton;
+
+            var loginButton = new UIBarButtonItem(UIBarButtonSystemItem.Edit, Login);
+            NavigationItem.LeftBarButtonItem = loginButton;
+
 
             TableView.Source = dataSource = new DataSource(this);
         }

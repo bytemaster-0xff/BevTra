@@ -62,5 +62,7 @@ namespace BevTra.Core
         }
 
         public Models.User CurrentUser { get; private set; }
+
+        public Microsoft.WindowsAzure.MobileServices.IMobileServiceClient MobileServices {get { return _client; } }
     }
 }

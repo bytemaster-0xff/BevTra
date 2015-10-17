@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BevTra.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
@@ -25,6 +27,17 @@ namespace BevTra
         public StartupView()
         {
             this.InitializeComponent();
+        }
+
+        public void Login()
+        {
+            var client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(Constants.AccountUrl, Constants.AccountKey);
+            client.LoginAsync(MobileServiceAuthenticationProvider.Facebook); 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Login();
         }
     }
 }

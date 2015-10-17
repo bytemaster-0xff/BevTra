@@ -1,6 +1,7 @@
 ﻿using System;
 using Foundation;
 using UIKit;
+using Facebook.CoreKit;
 
 namespace BevTra.iOS
 {
@@ -10,6 +11,9 @@ namespace BevTra.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : UIApplicationDelegate
     {
+        string appId = "1620303471542562";
+        string appName = "BevTra";
+
         // class-level declarations
         public override UIWindow Window
         {
@@ -37,8 +41,19 @@ namespace BevTra.iOS
                 splitViewController.WeakDelegate = detailViewController;
             }
 
+            Profile.EnableUpdatesOnAccessTokenChange(true);
+            Settings.AppID = appId;
+            Settings.DisplayName = appName;
+
             return true;
         }
+
+        public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+        {
+            return ApplicationDelegate.SharedInstance.OpenUrl(application, url, sourceApplication, annotation);
+        }
+
+
         //
         // This method is invoked when the application is about to move from active to inactive state.
         //

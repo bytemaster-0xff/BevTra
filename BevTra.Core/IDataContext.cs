@@ -19,5 +19,7 @@ namespace BevTra.Core
         Task<Models.User> Get(String accountId);
         void Init();
         Models.User CurrentUser { get; }
+
+        Microsoft.WindowsAzure.MobileServices.IMobileServiceClient MobileServices { get; } 
     }
 }
