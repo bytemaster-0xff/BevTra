@@ -12,8 +12,8 @@ namespace BevTra.Core.DeviceServices
 
         Task ConfirmAsync(String title, String message);
 
-        Task<T> GetKVPValueAsync<T>(String key, T defaultValue) where T : class;
+        Task<T> GetKVPValueAsync<T>(String key, T defaultValue);
 
-        Task PutKVPValueAsync<T>(String key, T value) where T : class;
+        Task PutKVPValueAsync<T>(String key, T value);
     }
 }

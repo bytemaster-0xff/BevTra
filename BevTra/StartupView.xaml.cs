@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BevTra.Core.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,10 +30,20 @@ namespace BevTra
             this.InitializeComponent();
         }
 
-        public void Login()
+        public async void Login()
         {
             var client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(Constants.AccountUrl, Constants.AccountKey);
-            client.LoginAsync(MobileServiceAuthenticationProvider.Facebook); 
+            var user = await client.LoginAsync(MobileServiceAuthenticationProvider.Facebook);
+
+            ViewModel.LoginSuccss(user.UserId);
+
+
+
+        }
+
+        public StartupViewModel ViewModel
+        {
+            get { return DataContext as StartupViewModel; }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using BevTra.Core;
+using BevTra.Core.DeviceServices;
 using BevTra.Core.ViewModels;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -20,13 +21,15 @@ namespace BevTra
 
             var nav = new NavigationService();
             nav.Configure(Views.About, typeof(AboutView));
-            nav.Configure(Views.AddNew, typeof(AddNewViewModel));
+            nav.Configure(Views.AddNew, typeof(AddNewView));
             nav.Configure(Views.History, typeof(HistoryView));
             nav.Configure(Views.Home, typeof(HomeView));
             nav.Configure(Views.Settings, typeof(SettingsView));
             nav.Configure(Views.Startup, typeof(StartupView));
 
             SimpleIoc.Default.Register<INavigationService>(() => nav);
+
+            SimpleIoc.Default.Register<IPlatformServices, DeviceServices.PlatformServices>();
 
             SimpleIoc.Default.Register<IDialogService, DialogService>();
 

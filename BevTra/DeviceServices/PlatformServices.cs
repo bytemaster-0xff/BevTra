@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 
 namespace BevTra.DeviceServices
 {
@@ -20,7 +21,7 @@ namespace BevTra.DeviceServices
             get { return Windows.Storage.ApplicationData.Current.RoamingSettings.Values; }
         }
 
-        public Task<T> GetKVPValueAsync<T>(string key, T defaultValue) where T : class
+        public Task<T> GetKVPValueAsync<T>(string key, T defaultValue)
         {
             var tcs = new TaskCompletionSource<T>();
             Task.Run(() =>
@@ -29,7 +30,7 @@ namespace BevTra.DeviceServices
                 {
                     var value = SettingsValues[key];
 
-                    tcs.SetResult(Convert.ChangeType(value, typeof(T)) as T);
+                    tcs.SetResult((T)(Convert.ChangeType(value, typeof(T))));
                 }
                 else
                     tcs.SetResult(defaultValue);
@@ -38,7 +39,7 @@ namespace BevTra.DeviceServices
             return tcs.Task;
         }
 
-        public async Task PutKVPValueAsync<T>(string key, T value)where T : class
+        public async Task PutKVPValueAsync<T>(string key, T value)
         {
             await Task.Run(() =>
             {
@@ -49,10 +50,11 @@ namespace BevTra.DeviceServices
             });
         }
 
-        public Task ShowPopupAsync(string title, string message)
+        public async Task ShowPopupAsync(string title, string message)
         {
-            throw new NotImplementedException();
-        }
-        
+            var dlg = new MessageDialog(message, title);
+            dlg.Commands.Add(new UICommand("OK"));
+            await dlg.ShowAsync();
+        }        
     }
 }

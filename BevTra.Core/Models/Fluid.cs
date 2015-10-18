@@ -8,11 +8,13 @@ namespace BevTra.Core.Models
 {
     public class Fluid
     {
-        public int String { get; set; }
+        public String Id { get; set; }
         public String UserId { get; set; }
         public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public DateTime? End { get; set; }
         public String Contents { get; set; }
         public int Ounces { get; set; }
+        public int PercentDrank { get; set; }
+        public String Status { get; set; }
     }
 }

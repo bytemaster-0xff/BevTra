@@ -5,9 +5,30 @@
     xmlns:local="using:BevTra"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding HomeVM, Source={StaticResource Locator}}" 
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Command="{Binding AddNewCommand}"  Content="Add New" Visibility="{Binding IsAddNewVisible, Converter={StaticResource VisibilityConverter}}"/>
 
+        <Grid Visibility="{Binding IsUpdateExistingVisible, Converter={StaticResource VisibilityConverter}}"  Margin="0,100,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="{Binding Path=CurrentFluid.Contents}" />
+                <TextBlock Text="{Binding Path=CurrentFluid.Start}" />
+                <TextBlock Text="{Binding Path=CurrentFluid.PercentDrank}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Button Command="{Binding TwentyFivePercentCommand}"  Content="25%" />
+                <Button Command="{Binding FiftyPercentCommand}"  Content="50%" />
+                <Button Command="{Binding SeventyFivePercentCommand}"  Content="75%" />
+                <Button Command="{Binding CancelFluidCommand}"  Content="Cancel" />
+                <Button Command="{Binding FinishFluidCommand}"  Content="Finished" />
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </Page>

@@ -18,7 +18,9 @@ namespace BevTra.Core
         Task Update(Models.User user);
         Task<Models.User> Get(String accountId);
         void Init();
-        Models.User CurrentUser { get; }
+        Models.User CurrentUser { get; set; }
+
+        Models.Fluid CurrentFluid { get; set; }
 
         Microsoft.WindowsAzure.MobileServices.IMobileServiceClient MobileServices { get; } 
     }

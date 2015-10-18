@@ -73,6 +73,12 @@ namespace BevTra.Core
                     LastName = "Wolf"
                 };
             }
+            set { }
+        }
+
+        public Models.Fluid CurrentFluid
+        {
+            get; set;
         }
 
         Microsoft.WindowsAzure.MobileServices.IMobileServiceClient _mockClient = new MockMobileSerivceClient();

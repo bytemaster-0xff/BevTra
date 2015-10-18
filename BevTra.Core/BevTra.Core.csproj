@@ -62,7 +62,6 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StartupViewModel.cs" />
-    <Compile Include="ViewModels\UpdateExistingViewModel.cs" />
     <Compile Include="Views.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace BevTra.Core
         {
             _client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(Constants.AccountUrl, Constants.AccountKey);
         }
-       
+
         public async Task AddFluid(Models.Fluid fluid)
         {
             var tbl = _client.GetTable<Models.Fluid>();
@@ -22,7 +23,7 @@ namespace BevTra.Core
             await tbl.InsertAsync(fluid);
         }
 
-        public  Task<List<Models.Fluid>> GetFluids(DateTime start, DateTime end)
+        public Task<List<Models.Fluid>> GetFluids(DateTime start, DateTime end)
         {
             throw new NotImplementedException();
         }
@@ -55,14 +56,16 @@ namespace BevTra.Core
             await tbl.UpdateAsync(user);
         }
 
-        public async Task <Models.User> Get(String accountId)
+        public async Task<Models.User> Get(String accountId)
         {
             var tbl = _client.GetTable<Models.User>();
             return await tbl.LookupAsync(accountId);
         }
 
-        public Models.User CurrentUser { get; private set; }
+        public Models.User CurrentUser { get; set; }
 
-        public Microsoft.WindowsAzure.MobileServices.IMobileServiceClient MobileServices {get { return _client; } }
+        public Models.Fluid CurrentFluid { get; set; }
+
+        public Microsoft.WindowsAzure.MobileServices.IMobileServiceClient MobileServices { get { return _client; } }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using BevTra.Core;
+using BevTra.Core.DeviceServices;
 
 namespace BevTra.iOS
 {
@@ -41,6 +42,8 @@ namespace BevTra.iOS
             nav.Configure(Views.UpdateExisting, "UpdateExistingView");
 
             SimpleIoc.Default.Register<INavigationService>(() => nav);
+
+            SimpleIoc.Default.Register<IPlatformServices, DeviceServices.PlatformServices>();
 
             // Override point for customization after application launch.
             if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)

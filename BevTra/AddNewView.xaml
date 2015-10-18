@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="BevTra.AddNewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BevTra"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding AddNewVM, Source={StaticResource Locator}}" 
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button Command="{Binding SetLargeCommand}" Content="16 Oz" Grid.Row="0"/>
+            <Button Command="{Binding SetMediumCommand}" Content="12 Oz" Grid.Row="1"/>
+            <Button Command="{Binding SetSmallCommand}" Content="8 Oz" Grid.Row="2"/>
+
+            <Button Command="{Binding SetWaterCommand}" Content="Water" Grid.Row="0" Grid.Column="1"/>
+            <Button Command="{Binding SetBlendedCommand}" Content="Blended Drink" Grid.Column="1" Grid.Row="1"/>
+            <Button Command="{Binding SetSportsDrinkCommand}" Content="Sports Drink" Grid.Column="1" Grid.Row="2"/>
+            <Button Command="{Binding SetHotTeaCommand}" Content="Hot Tea" Grid.Column="1" Grid.Row="3"/>
+            <Button Command="{Binding SetIceTeaCommand}" Content="Ice Tea" Grid.Column="1" Grid.Row="4"/>
+
+
+            <Button Command="{Binding SaveCommand}" Content="Save" Grid.Row="6"/>
+            <Button Command="{Binding CancelCommand}" Content="Cancel" Grid.Column="1" Grid.Row="6"/>
+        </Grid>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="{Binding Path=Contents}" />
+            <TextBlock Text="{Binding Path=Ounces}" />
+        </StackPanel>
+    </Grid>
+</Page>

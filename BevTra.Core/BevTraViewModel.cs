@@ -25,7 +25,7 @@ namespace BevTra.Core
             set;
         }
 
-        public Task<bool> PerformNetworkAction(Action action, String busyMessage = "")
+        public Task<bool> PerformNetworkAction(Func<Task> action, String busyMessage = "")
         {
             var tcs = new TaskCompletionSource<bool>();
             Task.Run(async () =>
@@ -35,7 +35,7 @@ namespace BevTra.Core
                var errorMessage = String.Empty;
                try
                {
-                   action();
+                   await action();
                }
                catch (Exception ex)
                {

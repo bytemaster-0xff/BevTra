@@ -6,6 +6,7 @@
     RequestedTheme="Light">
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator" xmlns:vm="using:BevTra" />
+        <cvt:VisibilityConverter x:Key="VisibilityConverter" xmlns:cvt="using:BevTra.Converters" />
     </Application.Resources>
 
 </Application>
