@@ -92,6 +92,7 @@
     <Compile Include="AddNewViewController.designer.cs">
       <DependentUpon>AddNewViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeviceServices\PlatformServices.cs" />
     <Compile Include="HomeViewController.cs" />
     <Compile Include="HomeViewController.designer.cs">
       <DependentUpon>HomeViewController.cs</DependentUpon>

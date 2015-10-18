@@ -13,10 +13,7 @@ namespace BevTra.Core.DeviceServices
         {
             get
             {
-                if (_current == null)
-                    _current = GalaSoft.MvvmLight.Ioc.SimpleIoc.Default.GetInstance<IPlatformServices>();
-
-                return _current;
+                return _current ??( _current = GalaSoft.MvvmLight.Ioc.SimpleIoc.Default.GetInstance<IPlatformServices>());
             }
         }
     }
