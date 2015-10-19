@@ -32,7 +32,7 @@ namespace BevTra.iOS
 
             _loginButton = new LoginButton(new CGRect(80, 120, 220, 46))
             {
-                LoginBehavior = LoginBehavior.SystemAccount,
+                LoginBehavior = LoginBehavior.SystemAccount, 
                 ReadPermissions = _readPermissions.ToArray()
             };
 

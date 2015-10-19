@@ -22,7 +22,6 @@ namespace BevTra.iOS
         public AddNewViewModel AddNew { get { return SimpleIoc.Default.GetInstance<AddNewViewModel>(); } }
         public HomeViewModel Home { get { return SimpleIoc.Default.GetInstance<HomeViewModel>(); } }
         public SettingsViewModel Settings { get { return SimpleIoc.Default.GetInstance<SettingsViewModel>(); } }
-        public UpdateExistingViewModel UpdateExisting { get { return SimpleIoc.Default.GetInstance<UpdateExistingViewModel>(); } }
         public StartupViewModel Startup { get { return SimpleIoc.Default.GetInstance<StartupViewModel>();  } }
         
     }

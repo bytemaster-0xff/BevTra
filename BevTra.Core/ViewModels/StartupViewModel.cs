@@ -62,6 +62,12 @@ namespace BevTra.Core.ViewModels
         {
             await DeviceServices.PlatformServices.Current.PutKVPValueAsync("USER_ID", userId);
 
+            await PerformNetworkAction(async () =>
+            {
+                var user = await DataContext.Get(userId);
+
+            });
+
             Navigation.NavigateTo(Views.Home);
         }
 

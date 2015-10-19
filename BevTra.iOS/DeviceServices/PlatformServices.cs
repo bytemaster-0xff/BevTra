@@ -14,7 +14,7 @@ namespace BevTra.iOS.DeviceServices
             throw new NotImplementedException();
         }
 
-        public Task<T> GetKVPValueAsync<T>(string key, T defaultValue) where T : class
+        public Task<T> GetKVPValueAsync<T>(string key, T defaultValue) 
         {
             var tcs = new TaskCompletionSource<T>();
 
@@ -34,7 +34,7 @@ namespace BevTra.iOS.DeviceServices
                         case TypeCode.Int16:
                         case TypeCode.Int32:
                         case TypeCode.Int64:
-                            tcs.SetResult(store.GetLong(key) as T); break;
+                            tcs.SetResult((T)(Convert.ChangeType(store.GetLong(key), typeof(T)))); break;
 
                         case TypeCode.UInt16:
                         case TypeCode.UInt32:
@@ -57,7 +57,7 @@ namespace BevTra.iOS.DeviceServices
             return tcs.Task;
         }
 
-        public async Task PutKVPValueAsync<T>(string key, T value) where T : class
+        public async Task PutKVPValueAsync<T>(string key, T value) 
         {
             await Task.Run(() =>
             {
