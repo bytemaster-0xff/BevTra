@@ -19,17 +19,12 @@ namespace BevTra.Core
 
         public void Init()
         {
-            _client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(Constants.AccountUrl, Constants.AccountKey);
-            var store = new MobileServiceSQLiteStore("bevtrak.db");
-            store.DefineTable<Models.Fluid>();
-            _client.SyncContext.InitializeAsync(store);
-
-            _client.SyncContext
+            _client = new Microsoft.WindowsAzure.MobileServices.MobileServiceClient(Constants.AccountUrl, Constants.AccountKey);        
         }
 
         public async Task AddFluid(Models.Fluid fluid)
         {
-            var tbl = _client.GetSyncTable<Models.Fluid>();
+            var tbl = _client.GetTable<Models.Fluid>();
 
             await tbl.InsertAsync(fluid);
         }
@@ -41,14 +36,14 @@ namespace BevTra.Core
 
         public async Task UpdateFluid(Models.Fluid fluid)
         {
-            var tbl = _client.GetSyncTable<Models.Fluid>();
+            var tbl = _client.GetTable<Models.Fluid>();
 
             await tbl.UpdateAsync(fluid);
         }
 
         public async Task DeleteFluid(Models.Fluid fluid)
         {
-            var tbl = _client.GetSyncTable<Models.Fluid>();
+            var tbl = _client.GetTable<Models.Fluid>();
 
             await tbl.DeleteAsync(fluid);
         }
@@ -69,9 +64,7 @@ namespace BevTra.Core
 
         public async Task<Models.User> Get(String accountId)
         {
-            var tbl = _client.GetTable<Models.User>();
-            var qry = tbl.CreateQuery();
-            return null;
+          return (await _client.GetTable<Models.User>().Where(usr=>usr.AccountId == accountId).ToListAsync()).FirstOrDefault();
         }
 
         public Models.User CurrentUser { get; set; }
@@ -142,6 +135,5 @@ namespace BevTra.Core
             return Task.FromResult(0);
 
         }
-
     }
 }

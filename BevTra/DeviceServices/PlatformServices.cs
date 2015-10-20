@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace BevTra.DeviceServices
 {
@@ -55,6 +56,14 @@ namespace BevTra.DeviceServices
             var dlg = new MessageDialog(message, title);
             dlg.Commands.Add(new UICommand("OK"));
             await dlg.ShowAsync();
-        }        
+        }
+
+        public async void RunOnMainThread(Action action)
+        {
+            await BevTra.App.TheApp.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+               {
+                   action();
+               });
+        }
     }
 }

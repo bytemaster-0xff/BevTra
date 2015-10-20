@@ -43,7 +43,10 @@ namespace BevTra.iOS
 
             SimpleIoc.Default.Register<INavigationService>(() => nav);
 
-            SimpleIoc.Default.Register<IPlatformServices, DeviceServices.PlatformServices>();
+            var dataContext = new DataContext();
+            dataContext.Init();
+            SimpleIoc.Default.Register<IDataContext>(() => dataContext);
+            SimpleIoc.Default.Register<IPlatformServices>(() => new DeviceServices.PlatformServices());
 
             // Override point for customization after application launch.
             if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)

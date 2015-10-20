@@ -34,6 +34,9 @@ namespace BevTra.Core.ViewModels
             RaisePropertyChanged(() => CurrentFluid);
             RaisePropertyChanged(() => IsAddNewVisible);
             RaisePropertyChanged(() => IsUpdateExistingVisible);
+
+
+            DataContext.CurrentUser = await DataContext.Get(DataContext.CurrentUser.AccountId);
         }
 
         public void AddNew()

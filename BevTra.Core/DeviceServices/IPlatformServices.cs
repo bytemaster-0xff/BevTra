@@ -15,5 +15,7 @@ namespace BevTra.Core.DeviceServices
         Task<T> GetKVPValueAsync<T>(String key, T defaultValue);
 
         Task PutKVPValueAsync<T>(String key, T value);
+
+        void RunOnMainThread(Action action);
     }
 }

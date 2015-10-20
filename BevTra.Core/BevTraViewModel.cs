@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Helpers;
+using System.Diagnostics;
 
 namespace BevTra.Core
 {
@@ -17,6 +19,11 @@ namespace BevTra.Core
         public GalaSoft.MvvmLight.Views.INavigationService Navigation
         {
             get { return GalaSoft.MvvmLight.Ioc.SimpleIoc.Default.GetInstance<GalaSoft.MvvmLight.Views.INavigationService>(); }
+        }
+
+        public GalaSoft.MvvmLight.Views.IDialogService Dialogs
+        {
+            get { return GalaSoft.MvvmLight.Ioc.SimpleIoc.Default.GetInstance<GalaSoft.MvvmLight.Views.IDialogService>(); }
         }
 
         public bool IsBusy
@@ -40,6 +47,7 @@ namespace BevTra.Core
                catch (Exception ex)
                {
                    errorMessage = ex.Message;
+                    Debug.WriteLine(ex.Message);
                    success = false;
                }
                finally
@@ -48,7 +56,12 @@ namespace BevTra.Core
                }
 
                 if (!success)
-                    await DeviceServices.PlatformServices.Current.ShowPopupAsync(LanguageResources.AppName, errorMessage);
+                {
+                    DeviceServices.PlatformServices.Current.RunOnMainThread(async () =>
+                    {
+                        await Dialogs.ShowMessage(LanguageResources.AppName, errorMessage);
+                    });
+                }
 
                 tcs.SetResult(success);
             });

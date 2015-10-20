@@ -62,13 +62,19 @@ namespace BevTra.Core.ViewModels
         {
             await DeviceServices.PlatformServices.Current.PutKVPValueAsync("USER_ID", userId);
 
+            var isExistingUser = false;
+
             await PerformNetworkAction(async () =>
             {
                 var user = await DataContext.Get(userId);
+                isExistingUser = (user != null);
 
             });
 
-            Navigation.NavigateTo(Views.Home);
+            if(isExistingUser)
+                Navigation.NavigateTo(Views.Home);
+            else
+                Navigation.NavigateTo(Views.Settings);
         }
 
         public void ShowAboutScreen()

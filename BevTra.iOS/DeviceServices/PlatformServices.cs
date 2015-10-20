@@ -29,8 +29,12 @@ namespace BevTra.iOS.DeviceServices
                 else
                     switch (Type.GetTypeCode(typeof(T)))
                     {
-                        case TypeCode.String: tcs.SetResult(store.GetString(key) as T); break;
-                        case TypeCode.Boolean: tcs.SetResult(store.GetBool(key) as T); break;
+                        case TypeCode.String:
+                            tcs.SetResult((T)(Convert.ChangeType(store.GetString(key), typeof(T)))); break;
+                            break;
+                        case TypeCode.Boolean:
+                            tcs.SetResult((T)(Convert.ChangeType(store.GetBool(key), typeof(T)))); break;
+                            break;
                         case TypeCode.Int16:
                         case TypeCode.Int32:
                         case TypeCode.Int64:
@@ -39,16 +43,16 @@ namespace BevTra.iOS.DeviceServices
                         case TypeCode.UInt16:
                         case TypeCode.UInt32:
                         case TypeCode.UInt64:
-                            tcs.SetResult(store.GetLong(key) as T); break;
+                            tcs.SetResult((T)(Convert.ChangeType(store.GetLong(key), typeof(T)))); break;
 
                         case TypeCode.Single:
                         case TypeCode.Double:
-                            tcs.SetResult(store.GetDouble(key) as T); break;
+                            tcs.SetResult((T)(Convert.ChangeType(store.GetDouble(key), typeof(T)))); break;
 
                         case TypeCode.DateTime:
                             {
                                 var ticks = store.GetLong(key);
-                                tcs.SetResult(new DateTime(ticks) as T);
+                                tcs.SetResult((T)Convert.ChangeType(new DateTime(ticks), typeof(T)));
                             }
                             break;
                     }
@@ -94,6 +98,11 @@ namespace BevTra.iOS.DeviceServices
                 }
 
             });
+        }
+
+        public void RunOnMainThread(Action action)
+        {
+            
         }
 
         public Task ShowPopupAsync(string title, string message)

@@ -48,7 +48,10 @@ namespace BevTra.iOS
                     return;
                 }
 
-                Vm.LoginSuccss();
+
+                var userId = String.Format("Facebook:{0}", e.Result.Token.UserID);
+
+                Vm.LoginSuccss(userId);
 
                 // Handle your successful login
             };
